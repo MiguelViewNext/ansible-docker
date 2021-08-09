@@ -1,0 +1,42 @@
+---
+- hosts: web
+  tasks:
+  - name: Install apache2
+    apt:
+      name: apache2
+      state: present
+
+  #- name: iniciar servicio
+    #service:
+      #name: apache2
+      #state: started
+
+  - name: copiar fichero
+    copy:
+      src: templates/index.html.j2
+      dest: /var/www/html/index.html
+      owner: www-data
+      group: www-data
+      mode: '0644'
+
+  #- name: cambiar linea
+    #lineinfile:
+      #path: '/etc/www/html/apache.conf'
+      #regexp: '^<h1>'
+      #line: '<h1>Adios</h1><br>'
+      #owner: www-data
+      #group: www-data
+      #mode: '0750'
+
+  - name: Restaurar servidor
+    service:
+      name: apache2
+      state: restarted
+
+- hosts: db
+  tasks:
+  - name: Install mariadb
+    apt:
+      name: mariadb-server
+      state: present
+      update_cache: yes
