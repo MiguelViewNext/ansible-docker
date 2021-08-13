@@ -27,12 +27,12 @@
       owner: app
       mode: '0600'
 
-  #- name: Copiar file
-    #copy:
-    #  src: app.pub
-     # dest: '/home/app/.ssh/app.pub'
-     # owner: app
-     # mode: '0600'
+  - name: Copiar file
+    copy:
+      src: app.pub
+      dest: '/home/app/.ssh/app.pub'
+      owner: app
+      mode: '0600'
 
   - name: 
     authorized_key:

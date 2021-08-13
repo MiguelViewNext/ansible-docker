@@ -1,0 +1,8 @@
+version: "3.0"
+
+services:
+  gradleFinal:
+    image: final:openjdk-jre-slim
+    build: .
+    ports:
+      - "7776:8080"
